@@ -3,6 +3,7 @@
 Please try to follow the Initial Setup before we start the session so that everyone is able to follow through.
 
 - [Initial Setup (PRE)](_docs/INITIAL.md)
+- [Postman Collection](https://github.com/sabeersulaiman/mmt-go-test/blob/main/_docs/bank-test.postman_collection.json)
 
 ## Project Outline
 
