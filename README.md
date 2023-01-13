@@ -1,4 +1,4 @@
-# Repo for INGO-MMT Golang Testing Team Coding Event
+# Repo for INGO-MMT Golang Testing - Team Coding
 
 Please try to follow the Initial Setup before we start the session so that everyone is able to follow through.
 
