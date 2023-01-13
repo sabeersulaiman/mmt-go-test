@@ -24,7 +24,7 @@ func main() {
 			account.POST("", accHandler.CreateAccount)
 			account.PUT(":accountId/deposit", accHandler.DepositToAccount)
 			account.PUT(":accountId/withdraw", accHandler.WithdrawMoney)
-			account.GET(":accountId", accHandler.CreateAccount)
+			account.GET(":accountId", accHandler.GetAccount)
 		}
 	}
 

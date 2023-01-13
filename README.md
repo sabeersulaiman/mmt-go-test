@@ -15,7 +15,7 @@ We are building a banking system (believe it!). We have accounts, an account hol
 And the interface is a REST API. We are using the Gin framework for building these functionalities. We have the following APIs:
 - POST /api/v1/accounts (Creates an account)
 - PUT /api/v1/accounts/{accountId}/deposit (Deposit money)
-- PUT /api/v1/accounts/{accountId}/withdraw (Withdraw money)
+- PUT /api/v1/accounts/{accountId}/withdraw (Withdraw money) - intentionally bugged
 - GET /api/v1/accounts/{accountId} (See the account info, which will also have the balance)
 
 We do have some bugs here and there and code is not tested. We will close these in the meeting. Please go through the
