@@ -4,7 +4,7 @@ import (
 	"mmt.com/lolbank/domain"
 	"mmt.com/lolbank/domain/requests"
 	"mmt.com/lolbank/pkg/bankerrors"
-	"mmt.com/lolbank/repos"
+	"mmt.com/lolbank/ports"
 )
 
 var (
@@ -14,12 +14,12 @@ var (
 )
 
 type AccountService struct {
-	repo *repos.AccountRepo
+	repo ports.AccountRepo
 }
 
-func NewAccountService() *AccountService {
+func NewAccountService(accountRepo ports.AccountRepo) *AccountService {
 	return &AccountService{
-		repo: repos.NewAccountRepo(),
+		repo: accountRepo,
 	}
 }
 

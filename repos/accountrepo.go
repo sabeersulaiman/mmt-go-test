@@ -4,19 +4,20 @@ import (
 	"github.com/google/uuid"
 	"mmt.com/lolbank/domain"
 	"mmt.com/lolbank/pkg/bankerrors"
+	"mmt.com/lolbank/ports"
 )
 
-type AccountRepo struct {
+type inMemAccountRepo struct {
 	store map[string]domain.Account
 }
 
-func NewAccountRepo() *AccountRepo {
-	return &AccountRepo{
+func NewInMemAccountRepo() ports.AccountRepo {
+	return &inMemAccountRepo{
 		store: make(map[string]domain.Account),
 	}
 }
 
-func (r *AccountRepo) AddAccount(acc domain.Account) domain.Account {
+func (r *inMemAccountRepo) AddAccount(acc domain.Account) domain.Account {
 	newAccountId := uuid.New().String()
 	acc.AccountId = newAccountId
 	r.store[acc.AccountId] = acc
@@ -24,7 +25,7 @@ func (r *AccountRepo) AddAccount(acc domain.Account) domain.Account {
 	return acc
 }
 
-func (r *AccountRepo) UpdateAccount(acc domain.Account) error {
+func (r *inMemAccountRepo) UpdateAccount(acc domain.Account) error {
 	existing := r.getAccount(acc.AccountId)
 	if existing == nil {
 		return bankerrors.ErrorNotFound
@@ -35,7 +36,7 @@ func (r *AccountRepo) UpdateAccount(acc domain.Account) error {
 	return nil
 }
 
-func (r *AccountRepo) GetAccount(accId string) (domain.Account, error) {
+func (r *inMemAccountRepo) GetAccount(accId string) (domain.Account, error) {
 	existing := r.getAccount(accId)
 	if existing == nil {
 		return domain.Account{}, bankerrors.ErrorNotFound
@@ -44,7 +45,7 @@ func (r *AccountRepo) GetAccount(accId string) (domain.Account, error) {
 	return *existing, nil
 }
 
-func (r *AccountRepo) GetAccountByIdNumber(idNum string) (domain.Account, error) {
+func (r *inMemAccountRepo) GetAccountByIdNumber(idNum string) (domain.Account, error) {
 	for _, v := range r.store {
 		if v.IdNumber == idNum {
 			return v, nil
@@ -54,7 +55,7 @@ func (r *AccountRepo) GetAccountByIdNumber(idNum string) (domain.Account, error)
 	return domain.Account{}, bankerrors.ErrorNotFound
 }
 
-func (r *AccountRepo) getAccount(accId string) *domain.Account {
+func (r *inMemAccountRepo) getAccount(accId string) *domain.Account {
 	if acc, ok := r.store[accId]; ok {
 		return &acc
 	}
