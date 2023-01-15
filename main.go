@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"mmt.com/lolbank/handlers"
+	"mmt.com/lolbank/repos"
 	"mmt.com/lolbank/services"
 	"net/http"
 )
@@ -14,7 +15,8 @@ func main() {
 	router.RedirectTrailingSlash = false
 	router.Use(gin.Logger())
 
-	accSvc := services.NewAccountService()
+	repo := repos.NewInMemAccountRepo()
+	accSvc := services.NewAccountService(repo)
 	accHandler := handlers.NewAccountHandler(accSvc)
 
 	api := router.Group("/api/v1")
